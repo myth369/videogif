@@ -1,0 +1,34 @@
+# Windows image file caches
+Thumbs.db
+# Folder config file
+Desktop.ini
+
+#grunt
+UE
+src/node_modules
+src/.npm-debug.log
+src/tmp
+
+.DS_Store
+src/.DS_store
+src/util/.DS_store
+/.DS_Store
+/upload
+.idea
+/upload
+.tags
+*.swo
+*.swp
+*.utf.js
+.batch.sh
+build/
+node_modules/
+
+tags
+.sass-cache/
+*.patch
+*.dump
+dist
+
+.grunt/
+_SpecRunner.html

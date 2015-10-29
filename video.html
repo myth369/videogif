@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>gif</title>
+<script src="js/gif/gif.js" type="text/javascript"></script> 
+<script src="js/iscroll/iscroll.js" type="text/javascript"></script> 
+<script src="js/video.js" type="text/javascript"></script> 
+<style type="text/css">
+    video {
+        border: 1px solid black;
+        padding: 0;
+        margin: 0;
+        width: 427px;
+        height: 240px;
+        background-color: black;
+        margin: auto;
+        /*float: left;*/
+    }
+
+    #previewImages{height:30px;}
+    #previewImages img{
+        float: left;
+        height: 100%;
+    }
+
+    #wrapper,#previewImages {
+        position: relative;
+        z-index: 1;
+        /*top: 45px;*/
+        /*bottom: 48px;*/
+        /*left: 0;*/
+        width: 100%;
+        background: #ccc;
+        overflow: hidden;
+    }
+
+    #scroller {
+        position: absolute;
+        z-index: 1;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        width: 5000px;
+        height: 30px;
+        /*background-color: #a00;*/
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        -o-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-text-size-adjust: none;
+        -moz-text-size-adjust: none;
+        -ms-text-size-adjust: none;
+        -o-text-size-adjust: none;
+        text-size-adjust: none;
+    }
+
+    #scroller ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    #scroller li {
+        display: block;
+        float: left;
+        width: 100px;
+        height: 100%;
+        border-right: 1px solid #ccc;
+        background-color: #fafafa;
+        font-size: 14px;
+    }
+</style>
+</head>
+<body>
+    <video id="video" controls="controls"> 
+         <!-- poster="http://media.w3.org/2010/05/sintel/poster.png" -->
+        <!-- <source id="mp4" src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4"> -->
+        <source src="mov_bbb.mp4" type="video/mp4">
+        <p>Your user agent does not support the HTML5 Video element.</p>
+    </video>
+    <div>
+        <div>
+            <div id="progress">progress</div>
+        </div>
+        <div>
+            <span>截取范围(秒)：</span>
+            开始<input type="text" id="startTime"/>
+            结束<input type="text" id="endTime"/>
+            <a href="javascript:void(0);" id="createGifBtn">生成gif</a>
+        </div>
+    </div>
+
+    <div id="previewBox">
+        <img src="//:0" id="previewImg" width="427" height="240">
+        <div id="previewImages">
+            <div id="scroller"></div>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        function get(selector) {
+            return document.querySelectorAll(selector);
+        }
+
+        var vI = new VideoImage({
+            videoEl : get('#video')[0],
+            delay: 100
+        });
+
+        document.getElementById('createGifBtn').addEventListener('click', function(){
+            var startTime = document.getElementById('startTime').value;
+            var endTime = document.getElementById('endTime').value;
+            vI.render(startTime,endTime);
+        }, false);
+    </script>
+</body>
+</html>
