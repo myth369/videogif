@@ -1,0 +1,168 @@
+body{background:#fff;color:#999;font:12px/1.5 hiragino sans gb,microsoft yahei,simsun;}
+body,form,ul,ol,li,p,dl,dt,dd,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}
+h1,h2,h3,h4,h5,h6,input,textarea{font-size:12px;font-weight:normal;}
+li{list-style:none;}
+img{border:0;vertical-align:top;}
+em{font-style:normal;}
+textarea{resize:none;}
+a{outline:none;}
+
+/* clear float */
+.cfix:after,.cf:after,.clear:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
+.cfix,.cf,.clear{zoom:1}
+.cfixBoth{clear:both;height:1px;overflow:hidden;}
+
+/* common */
+.o{overflow:hidden;}
+.l{float:left;}
+.r{float:right;}
+.ta-r,.tar{text-align:right;}
+.ta-c,.tac{text-align:center;}
+.ta-l,.tal{text-align:left;}
+.va-t,.vat{vertical-align:top;}
+.va-m,.vam{vertical-align:middle;}
+.va-b,.vab{vertical-align:bottom;}
+.hid{display:none;}
+.rel{position:relative;}
+.abs{position:absolute;}
+.bold{font-weight:bold;}
+.break{word-wrap:break-word;word-break:break-all;}
+.elli{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.pointer{cursor:pointer;}
+.area{width:980px;margin:0 auto;}
+.new_result,.hide{display:none}
+.disb{display:block;}
+.disi{display:inline;}
+.disib{display:inline-block;}
+.disit{display:inline-table;}
+
+/* a */
+a{text-decoration:none;color:#3a3a3a;}
+a:hover{text-decoration:none;color:#e73c31;}
+.va-m, .vam {vertical-align: middle; }
+.area{width: 960px; margin: 0 auto; }
+
+
+/* nav */
+#tgHead{min-width:1000px;background:#fff;border-bottom:2px solid #E73C31;}
+#tgHead .area{height:74px;}
+#tgHead .logos{display:inline;margin:20px 0 0}
+#tgHead .logos .logo_tg{display:inline-block;padding:0 0 0 17px;margin-left:19px;border-left:2px solid #dadada;line-height:32px;font-size:24px}
+#tgHead .hdR{display:inline;margin:22px 0 0}
+#tgHead .nav li{float:left;display:inline;margin-right:28px}
+#tgHead .nav a{font-size:20px}
+#tgHead .nav a:hover{text-decoration:none}
+#tgHead .nav li.on a{color:#ea5824}
+#tgHead .hdSign{display:inline;width:100px;margin:5px 0 0}
+#tgHead .hdSign em{color:#e0e0e0;margin:0 10px}
+#tgHead .logos {display: inline; margin: 20px 0 0; }
+
+
+#footArea {background: url(http://css.tv.itc.cn/global/images/foot.png) repeat-x; height: 172px; margin-top: 25px }
+.footSearch {width: 980px; height: 43px; margin: 0 auto; text-align: center }
+.footSearch .search {width: 440px; margin: 0 auto; display: block; padding-top: 6px }
+.footLink {width: 955px; margin: 0 auto; padding: 15px 0 15px 25px }
+.footLink dl {float: left; line-height: 24px; padding: 0 10px 0 20px }
+.footLink dd.lastdd {width: 70px }
+.footLink .did_line {background: url(http://css.tv.itc.cn/global/images/foot-did.png) no-repeat top left; width: 5px; height: 125px; float: left; margin: -15px 10px 0 10px }
+.footLink dt {margin-bottom: 5px }
+.footLink dt a {font-weight: 700; font-size: 14px; color: #494949 }
+.footLink dt a:hover {color: #dd0d0b }
+.footLink dd a {margin-right: 10px; color: #7d7d7d }
+.footLink dd a:hover {color: #d80c18 }
+.footLink .d1 {margin: 5px 0 0 }
+#foot {margin:30px 0 0;padding: 15px 0; word-spacing: 4px;background-color:#fcfcfc;border-top:1px solid #e5e4e4;}
+#foot .unline a,#foot .mailto {color: #999 }
+#foot .area {line-height: 210% }
+.footer #foot {text-align: center }
+
+
+.btn{padding:10px 20px;color: #fff;border-radius:5px;}
+.btn:hover{color: #fff;}
+.btn.red{background:#e73c31;}
+.btn.red:hover{background-color:#DB6F69;}
+
+.content{margin: 20px 0 0; }
+.tt{width: 100px; text-align:right; }
+video {
+    display: block;
+    border: 1px solid black;
+    padding: 0;
+    margin: 0 auto;
+    width: 427px;
+    height: 240px;
+    background-color: black;
+}
+
+input[type="text"]{
+    width: 50px;
+    margin-right:5px;
+    text-align:right;
+}
+
+.rd label{
+    width: 60px;
+    display: inline-block;
+}
+
+#previewImages {
+    height:60px;
+    position: relative;
+    z-index: 1;
+    width: 427px;
+    margin: 0 auto;
+    background: #f2f2f2;
+    overflow: hidden;
+}
+#previewImages img{
+    float: left;
+    height: 50px;
+    margin-left:5px;
+}
+#previewImages img:last-child{
+    margin-right:5px;
+}
+
+#scroller {
+    position: absolute;
+    z-index: 1;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: 5000px;
+    height: 50px;
+    padding: 5px 0;
+    /*background-color: #a00;*/
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+#scroller ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+#scroller li {
+    display: block;
+    float: left;
+    width: 100px;
+    height: 100%;
+    border-right: 1px solid #ccc;
+    background-color: #fafafa;
+    font-size: 14px;
+}

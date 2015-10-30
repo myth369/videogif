@@ -4,121 +4,185 @@
 <head>
 <meta charset="utf-8">
 <title>gif</title>
+<script src="js/j_2.1.1.js" type="text/javascript"></script> 
 <script src="js/gif/gif.js" type="text/javascript"></script> 
 <script src="js/iscroll/iscroll.js" type="text/javascript"></script> 
-<script src="js/video.js" type="text/javascript"></script> 
-<style type="text/css">
-    video {
-        border: 1px solid black;
-        padding: 0;
-        margin: 0;
-        width: 427px;
-        height: 240px;
-        background-color: black;
-        margin: auto;
-        /*float: left;*/
-    }
-
-    #previewImages{height:30px;}
-    #previewImages img{
-        float: left;
-        height: 100%;
-    }
-
-    #wrapper,#previewImages {
-        position: relative;
-        z-index: 1;
-        /*top: 45px;*/
-        /*bottom: 48px;*/
-        /*left: 0;*/
-        width: 100%;
-        background: #ccc;
-        overflow: hidden;
-    }
-
-    #scroller {
-        position: absolute;
-        z-index: 1;
-        -webkit-tap-highlight-color: rgba(0,0,0,0);
-        width: 5000px;
-        height: 30px;
-        /*background-color: #a00;*/
-        -webkit-transform: translateZ(0);
-        -moz-transform: translateZ(0);
-        -ms-transform: translateZ(0);
-        -o-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        -webkit-text-size-adjust: none;
-        -moz-text-size-adjust: none;
-        -ms-text-size-adjust: none;
-        -o-text-size-adjust: none;
-        text-size-adjust: none;
-    }
-
-    #scroller ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-    }
-
-    #scroller li {
-        display: block;
-        float: left;
-        width: 100px;
-        height: 100%;
-        border-right: 1px solid #ccc;
-        background-color: #fafafa;
-        font-size: 14px;
-    }
-</style>
+<script src="js/video.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-    <video id="video" controls="controls"> 
-         <!-- poster="http://media.w3.org/2010/05/sintel/poster.png" -->
-        <!-- <source id="mp4" src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4"> -->
-        <source src="mov_bbb.mp4" type="video/mp4">
-        <p>Your user agent does not support the HTML5 Video element.</p>
-    </video>
-    <div>
-        <div>
-            <div id="progress">progress</div>
-        </div>
-        <div>
-            <span>截取范围(秒)：</span>
-            开始<input type="text" id="startTime"/>
-            结束<input type="text" id="endTime"/>
-            <a href="javascript:void(0);" id="createGifBtn">生成gif</a>
+    <div class="header">
+        <div id="tgHead">
+            <div class="area cfix">
+                <div class="l logos cfix">
+                    <a href=""><img src="css/logo_tv.png" width="132" height="34" alt="" class="vam"></a><a href="" class="logo_tg vam">Video Destroyer</a>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div id="previewBox">
-        <img src="//:0" id="previewImg" width="427" height="240">
-        <div id="previewImages">
-            <div id="scroller"></div>
-        </div>
+    <div class="content">
+        <div class="area cfix">
+            <video id="video" controls="controls"> 
+                <source src="mov_bbb.mp4" type="video/mp4">
+                <p>Your user agent does not support the HTML5 Video element.</p>
+            </video>
 
+            <!-- 视频设置 -->
+            <div style="margin:20px 0 0 0;line-height:35px;">
+                <header style="font-size:16px;">Gif截取设置</header>
+                <div class="cfix">
+                    <div class="l tt">截取时间：</div>
+                    <div class="l">
+                        <input type="text" id="startMin" value="0">分
+                        <input type="text" id="startSec" value="1">秒 ——— 
+                        <input type="text" id="endMin" value="0">分
+                        <input type="text" id="endSec" value="3">秒
+                    </div>
+                    <!-- <div class="l" style="margin-left:30px;">
+                        <a href="javascript:void(0)">展开高级设置</a>
+                    </div> -->
+                </div>
+
+
+                <div style="border:1px solid #e5e4e4;">
+                    <header style="background:#f2f2f2;text-align:center;cursor:pointer">
+                        <a href="javascript:void(0)" id="advanceBtn">展开高级设置</a>
+                    </header>
+                    <ul id="advanceBox" style="display:none;">
+                        <li class="cfix">
+                            <div class="l tt">截图清晰度：</div>
+                            <div class="l rd">
+                                <label><input type="radio" name="quality" value="6"/>正常</label>
+                                <label><input type="radio" name="quality" value="8" checked/>高清</label>
+                                <label><input type="radio" name="quality" value="10"/>原图</label>
+                            </div>
+                        </li>
+                        <!-- <li class="cfix">
+                            <div class="l tt">尺寸：</div>
+                            <div class="l"></div>
+                        </li> -->
+                        <li class="cfix">
+                            <div class="l tt">截图帧数：</div>
+                            <div class="l">
+                                <input value="10" type="text" id="frameNum">帧
+                            </div>
+                        </li>
+                        <li class="cfix">
+                            <div class="l tt">截取拼接：</div>
+                            <div class="l">
+                                <div>
+                                    <button>添加时间段</button>
+                                    <button>插入图片</button>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li class="cfix">
+                                            <div class="l">段1：</div>
+                                            <div class="l">
+                                                <input type="text" class="startMin">分
+                                                <input type="text" class="startSec">秒 ——— 
+                                                <input type="text" class="endMin">分
+                                                <input type="text" class="endSec">秒
+                                            </div>
+                                            <div class="l" style="margin-left:30px;">
+                                                <button>上移</button>
+                                                <button>下移</button>
+                                            </div>
+                                        </li>
+                                        <li class="cfix">
+                                            <div class="l">段1：</div>
+                                            <div class="l">
+                                                <input type="text" class="startMin">分
+                                                <input type="text" class="startSec">秒 ——— 
+                                                <input type="text" class="endMin">分
+                                                <input type="text" class="endSec">秒
+                                            </div>
+                                            <div class="l" style="margin-left:30px;">
+                                                <button>上移</button>
+                                                <button>下移</button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+                <div style="text-align:center;margin-top:10px;">
+                    <a href="javascrpt:void(0);" class="btn red" id="createGifBtn">制作</a>
+                </div>
+
+
+                <div>
+                    <div id="progress">progress</div>
+                </div>
+                <!-- <div>
+                    <span>截取范围(秒)：</span>
+                    开始<input type="text" value="0" id="startTime"/>
+                    结束<input type="text" value="2" id="endTime"/>
+                    <a href="javascript:void(0);" ></a>
+                    <button id="createGifBtn">生成gif</button>
+                </div> -->
+            </div>
+
+            <!-- 预览区域 -->
+            <div id="previewBox" style="margin:20px 0 0 0;line-height:35px;">
+                <img src="//:0" id="previewImg" width="427" height="240" style="display:block;margin:0 auto;">
+                <div id="previewImages">
+                    <div id="scroller"></div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div id="foot"> 
+        <div class="area tac"> <a href="javascript:void(0)" onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.sohu.com');return false;">设置首页</a> - <a href="http://pinyin.sogou.com/" target="_blank">搜狗输入法</a> - <a href="http://pay.sohu.com/payment/index.action" rel="nofollow" target="_blank">支付中心</a> - <a href="http://hr.sohu.com" target="_blank">搜狐招聘</a> - <a href="http://ad.sohu.com/" rel="nofollow" target="_blank">广告服务</a> - <a href="http://sohucallcenter.blog.sohu.com/" rel="nofollow" target="_blank">客服中心</a> - <a href="http://corp.sohu.com/s2006/contactus/" rel="nofollow" target="_blank">联系方式</a> - <a href="http://www.sohu.com/about/privacy.html" rel="nofollow" target="_blank">保护隐私权</a> - <a href="http://corp.sohu.com/" rel="nofollow" target="_blank">About SOHU</a> - <a href="http://corp.sohu.com/indexcn.shtml" rel="nofollow" target="_blank">公司介绍</a> <br>Copyright <span class="fontArial">©</span> <script>document.write(new Date().getFullYear());</script>2015 Sohu.com Inc. All Rights Reserved. 飞狐信息技术(天津)有限公司 <span class="unline"><a href="http://corp.sohu.com/s2007/copyright/" target="_blank">版权所有</a></span> <br>举报邮箱：<a href="mailto:jubao@contact.sohu.com">jubao@contact.sohu.com</a> </div> 
+    </div>
+
     <script type="text/javascript">
-        function get(selector) {
-            return document.querySelectorAll(selector);
-        }
+        var $advanceBtn = $('#advanceBtn'),
+            $advanceBox = $('#advanceBox'),
+            isAdvanceShow = true;
 
-        var vI = new VideoImage({
-            videoEl : get('#video')[0],
-            delay: 100
+        // 高级设置
+        $advanceBtn.on('click', function() {
+            if(isAdvanceShow) {
+                isAdvanceShow = false;
+                $advanceBtn.html('收起高级设置');
+            } else {
+                isAdvanceShow = true;
+                $advanceBtn.html('展开高级设置');
+            }
+            $advanceBox.toggle();
         });
 
-        document.getElementById('createGifBtn').addEventListener('click', function(){
-            var startTime = document.getElementById('startTime').value;
-            var endTime = document.getElementById('endTime').value;
+        var vI = new VideoImage({
+            videoEl : $('#video')[0],
+            quality : 3, //$('input[name=quality]').val(),
+            delay: 100
+        });
+    
+        // 生成按钮
+        $('#createGifBtn').on('click', function(){
+            var startMin = $('#startMin').val(),
+                startSec = $('#startSec').val(),
+                endMin   = $('#endMin').val(),
+                endSec   = $('#endSec').val();
+
+            // 截取时间
+            var startTime = startMin * 60 + startSec;
+            var endTime = endMin * 60 + endSec;
+            // 图片质量
+            var quality = $('input[name=quality]').val();
+            vI.setOption('quality', quality);
+
+            // 截图帧数
+            var frameNum = $('#frameNum').val() || 10;
+            var delay = 1000 / frameNum; // 1000毫秒/帧数 = 多少毫秒抽取一张图
+
+            vI.setDelay(delay);
             vI.render(startTime,endTime);
         }, false);
     </script>

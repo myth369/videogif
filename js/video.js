@@ -18,6 +18,8 @@ function VideoImage(opt) {
     this.opt = opt;
 
     this.videoEl = opt.videoEl;
+    this.quality = opt.quality || 10;
+    this.delay   = opt.delay || 100;
     this.init();
     this.bindEvent();
 }
@@ -32,10 +34,18 @@ VideoImage.prototype = {
 
         me.gif = new GIF({
             workers: 2,
-            quality: 10
+            quality: me.quality
         });
 
         me.initCanvas();
+    },
+    setDelay : function(val) {
+        var me = this;
+        me.delay = val || 10;
+    },
+    setOption : function(val) {
+        var me = this;
+        me.gif.setOption('quality', val);
     },
     bindEvent: function() {
         var me = this;
@@ -55,7 +65,7 @@ VideoImage.prototype = {
                 imgEl.src = me.ImageData[i];
                 me.gif.addFrame(imgEl, {
                     copy: true,
-                    delay: me.opt.delay
+                    delay: me.delay
                 });
             }
             me.gif.render();
@@ -76,7 +86,7 @@ VideoImage.prototype = {
              */
             me.timer1 = setInterval(function() {
                 me.ImageData.push(me.canvas.toDataURL());
-            },me.opt.delay);
+            },me.delay);
         }
 
         bindEvent(me.videoEl, 'play', makeImageData);
@@ -158,13 +168,26 @@ VideoImage.prototype = {
         var imgNew = null;
         var imgsBox = document.getElementById('scroller');
         var oFragment = document.createDocumentFragment();
-        for(var i=0,len = me.ImageData.length; i<len; i++){
+
+
+        var previewImages = [];
+        var count = Math.round(1000 / me.delay);
+        var previewIndex = Math.round(count / 2);
+        var time = me.endTime - me.startTime;
+
+        for(var i=0; i<time; i++){
+            previewIndex = previewIndex + count * i;
+            previewImages.push(me.ImageData[previewIndex]);
+        }
+
+        var previewImagesLen = previewImages.length;
+        for(var i=0,len = previewImagesLen; i<len; i++){
             imgNew = document.createElement('img');
             imgNew.src = me.ImageData[i];
             oFragment.appendChild(imgNew);
         }
         imgsBox.appendChild(oFragment);
-        imgsBox.style.width = 30 / me.vHeight * me.vWidth * me.ImageData.length + 'px';
+        imgsBox.style.width = 50 / me.vHeight * me.vWidth * previewImagesLen + previewImagesLen * 5 + 20 + 'px';
         myScroll = new IScroll('#previewImages', { scrollX: true, scrollY: false, mouseWheel: true });
     }
 }
